@@ -41,5 +41,12 @@ session altered.
 
 
 # redo undo 都是cdb来维护的
+
+
+SQL> show con_name
+CON_NAME
+------------------------------
+ORCLPDB
+
 ```
 

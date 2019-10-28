@@ -5,3 +5,6 @@
 
 目标：获得OCP认证，并处理oracle相关问题
 高级目标：达到OCM水平。
+
+[12C在线帮助](https://docs.oracle.com/database/121/)
+

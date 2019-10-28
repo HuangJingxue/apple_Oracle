@@ -66,7 +66,7 @@
 获取昨天
 ```
 
-### Date-Manipulation Functions
+## Date-Manipulation Functions
 
 | Function                          | Result      |
 | --------------------------------- | ----------- |
@@ -75,4 +75,90 @@
 |                                   |             |
 
 ## Implicit Data Type Conversion
+
+```sql
+# 字符串数值相互转换
+
+SQL> select to_number('$123,456','$99,999,999,999') from dual;
+
+TO_NUMBER('$123,456','$99,999,999,999')
+---------------------------------------
+				 123456
+
+SQL> select to_number('$123,456','$99,999,999,999') + 2000 from dual;
+
+TO_NUMBER('$123,456','$99,999,999,999')+2000
+--------------------------------------------
+				      125456
+
+SQL> select to_char(to_number('$123,456','$99,999,999,999') + 2000,'$99,999,999,999.00') from dual;
+
+TO_CHAR(TO_NUMBER('
+-------------------
+	$125,456.00
+                  
+                  
+#日期转换                  
+SQL> select  to_char(sysdate,'yyyy-mm-dd day year month w ww iw' ) from dual;
+
+select  to_char(sysdate,'yyyy-mm-dd hh24:mi:ss' ) from dual;
+TO_CHAR(SYSDATE,'YYYY-MM-DDDAYYEARMONTHWWWIW')
+--------------------------------------------------------------------------------
+2019-10-13 sunday    twenty nineteen october   2 41 41
+
+                  
+SQL> select  to_char(sysdate,'yyyy-mm-dd hh24:mi:ss' ) from dual;
+
+TO_CHAR(SYSDATE,'YY
+-------------------
+2019-10-13 11:20:13
+               
+
+```
+
+## General Functions
+
+- NVL (expr1, expr2)
+- NVL2 (expr1, expr2, expr3)
+- NULLIF (expr1, expr2)
+- COALESCE (expr1, expr2, ..., exprn)   返回第一个不为空的
+
+## Conditional Expressions
+
+```sql
+# 尽量不要用传统写法
+
+select t.employee_id,t.last_name,t.salary,
+case 
+    WHEN t.SALARY >=0 and t.salary <= 1000 THEN '1*t.salary'
+else
+'15'
+end
+from hr.EMPLOYEES t;
+
+--练习
+行列转换，求出每个部门不同等级有多少人？
+```
+
+## Group Functions
+
+> 组函数对行集进行操作，为每个组提供一个结果。
+>
+> 放在select list中的list，必须按照它分组。
+>
+> 分组时候的过滤
+
+```sql
+SELECT   job_id, SUM(salary) PAYROLL
+FROM     employees
+WHERE    job_id NOT LIKE '%REP%'
+GROUP BY job_id
+HAVING   SUM(salary) > 13000
+ORDER BY SUM(salary);
+
+```
+
+> count知识点
+
+count(1)、count(*) 没有意义
 
