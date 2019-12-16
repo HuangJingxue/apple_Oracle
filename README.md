@@ -29,7 +29,6 @@
 [Oracle数据库12 *c*版本2 管理](https://docs.oracle.com/en/database/oracle/oracle-database/12.2/administration.html)
 
 * [数据库管理员指南12 c版本2（12.2）](https://docs.oracle.com/en/database/oracle/oracle-database/12.2/admin/index.html)
-
 * [数据库安装指南 适用于Linux的12 c版本2（12.2）](https://docs.oracle.com/en/database/oracle/oracle-database/12.2/ladbi/index.html)
 * [数据库网络服务管理员指南12 c版本2（12.2）](https://docs.oracle.com/en/database/oracle/oracle-database/12.2/netag/index.html)
 * [数据库升级指南12 *c*版本2（12.2）](https://docs.oracle.com/en/database/oracle/oracle-database/12.2/upgrd/index.html)
@@ -37,6 +36,7 @@
 * [数据库安全指南12 c版本2（12.2）](https://docs.oracle.com/en/database/oracle/oracle-database/12.2/dbseg/index.html)
 * [数据库性能调优指南12 *c*版本2（12.2）](https://docs.oracle.com/en/database/oracle/oracle-database/12.2/tgdba/index.html)
 * [SQL *PLUS®用户指南和参考 发行版2（12.2）](https://docs.oracle.com/en/database/oracle/oracle-database/12.2/sqpug/index.html)
+* [云企业管理器（12.2）](https://oracle-base.com/articles/12c/cloud-control-12cr5-silent-installation-on-oracle-linux-7#cloud-control-installation)
 
 
 
@@ -133,7 +133,7 @@
 | D78846GC20_09.pdf | Managing Undo Data | 管理回滚 | 5 |
 | D78846GC20_10.pdf | Managing Data Concurrency | 管理并发 |     |
 | D78846GC20_11.pdf | Implementing Oracle Database Auditing | 管理审计 |     |
-| D78846GC20_12.pdf | Backup and Recovery: Concepts | 备份恢复概念 |     |
+| D78846GC20_12.pdf | Backup and Recovery: Concepts | 备份恢复概念 | 6 |
 | D78846GC20_13.pdf | Backup and Recovery: Configuration | 管理恢复配置 |     |
 | D78846GC20_14.pdf | Performing Database Backups | 执行备份 |     |
 | D78846GC20_15.pdf | Performing Database Recovery | 执行恢复 |     |
