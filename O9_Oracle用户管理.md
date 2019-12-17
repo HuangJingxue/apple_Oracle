@@ -1,101 +1,149 @@
 ## O9_Oracle用户管理
 
-查看权限相关的数据字典
+概念：逻辑上对数据库中的海量对象进行分组
 
 ```shell
-desc dict
+SQL> alter session set container=orclpdb;
 
-SQL> select table_name from dict where table_name like '%PRIV%';
-DBA_ROLE_PRIVS
+Session altered.
+
+SQL> create user apple identified by apple;
+
+User created.
+
+SQL> conn apple/apple; ##该操作会退出当前用户，需要重新登录
+ERROR:
+ORA-01017: invalid username/password; logon denied
 
 
-SQL> desc v$fixed_table
- Name					   Null?    Type
- ----------------------------------------- -------- ----------------------------
- NAME						    VARCHAR2(128)
- OBJECT_ID					    NUMBER
- TYPE						    VARCHAR2(5)
- TABLE_NUM					    NUMBER
- CON_ID 					    NUMBER
+Warning: You are no longer connected to ORACLE.
+
+
+[oracle@Oracle01 admin]$ sqlplus / as sysdba
+
+SQL*Plus: Release 12.2.0.1.0 Production on Mon Dec 16 18:26:40 2019
+
+Copyright (c) 1982, 2016, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 12c Enterprise Edition Release 12.2.0.1.0 - 64bit Production
+
+SQL> alter session set container=orclpdb;
+
+Session altered.
+
+SQL> grant create session to apple;
+
+Grant succeeded.
+
+
+SQL> alter session set container=orclpdb;
+
+Session altered.
+
+SQL> conn apple/apple@PDB1   
+Connected.
 
 ```
 
-用户管理
+--with admin option 权限回收无级联，系统权限
+
+--with grant option 权限回收有级联，对象权限
+
+
+
+角色：一组权限的集合
 
 ```shell
-# 创建用户
-create user qinxi identified by '123' default tablespace TBSAP1 temporary tablesapce tmp account unlock quota unlimitied on tbsap1;
+SQL> alter session set container=orclpdb;  
 
-#删除用户
-drop user qinxi;
+Session altered.
 
-#授权
-grant create table to qinxi;
+SQL> create role r_clerk;
 
-# 授权连接数据库
-grant create session to qinxi;
+Role created.
+
+SQL> grant create session,create table,create any index to r_clerk;
+
+Grant succeeded.
+
+SQL> grant r_clerk to apple;
+
+Grant succeeded.
+
+SQL> create role r_manager;
+
+Role created.
+
+SQL> grant create any table,r_clerk to r_manager;
+
+Grant succeeded.
+
 ```
 
-查看数据文件名
+修改口令
 
 ```shell
-select file_name from dba_data_files；
-
-create tabespace c_tbs1 datafile '' size 100m autoextend on next 20m maxsize 20g;
+alter user apple identified by apple;
 ```
 
 
 
+授权练习
 
-
-system privileges:
+- apple用户能够访问hr.employees
 
 ```shell
-with admin option
+
+[oracle@Oracle01 admin]$ sqlplus / as sysdba
+
+SQL*Plus: Release 12.2.0.1.0 Production on Mon Dec 16 18:26:40 2019
+
+Copyright (c) 1982, 2016, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 12c Enterprise Edition Release 12.2.0.1.0 - 64bit Production
+
+SQL> alter session set container=orclpdb;
+
+Session altered.
+
+SQL> grant select on hr.employees to hr;
+
+SQL> select grantee,owner,table_name from dba_tab_privs where grantee='APPLE';
+
+GRANTEE 															 OWNER	    TABLE_NAME
+-------------------------------------------------------------------------------------------------------------------------------- ---------- ------------------------------
+APPLE																 HR	    EMPLOYEES
+
+SQL> select * from dba_tab_privs where grantee='APPLE';
+
+SQL> alter pluggable database ORCLPDB open;
+
+Pluggable database altered.
+
+SQL> conn apple/apple@PDB1
+Connected.
+SQL> select * from hr.employees;
+
+EMPLOYEE_ID FIRST_NAME		 LAST_NAME
+----------- -------------------- -------------------------
+EMAIL			  PHONE_NUMBER	       HIRE_DATE JOB_ID 	SALARY
+------------------------- -------------------- --------- ---------- ----------
+COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+-------------- ---------- -------------
+
+
+
 ```
 
-with grant option
 
 
 
-create user contianer all;
-
-grant create table to user contianer all;
-
-```shell
-cd $ORACLE_HOME/rdbms/admin
-ls -al *pwd*
--rw-r--r--. 1 oracle oinstall 1150 Jul 17  2006 undopwd.sql
--rw-r--r--. 1 oracle oinstall 4462 Jan  6  2016 utlpwdmg.sql
-```
-
-show parameter fail;
-
-show parameter pre;
 
 
-
-数据库账号密码丢失
-
-```shell
-[oracle@Oracle01 admin]$ cd $ORACLE_HOME/dbs
-[oracle@Oracle01 dbs]$ ll
-total 20
--rw-rw----. 1 oracle oinstall 1544 Oct 13 09:17 hc_cdb1.dat
--rw-r--r--. 1 oracle oinstall 3079 May 15  2015 init.ora
--rw-r-----. 1 oracle oinstall   24 Sep 22 13:36 lkCDB1
--rw-r-----. 1 oracle oinstall 3584 Oct 14 12:24 orapwcdb1        sys用户密码文件
--rw-r-----. 1 oracle oinstall 3584 Oct 20 17:03 spfilecdb1.ora
-
-[oracle@Oracle01 admin]$ orapwd
-Usage: orapwd file=<fname> force=<y/n> asm=<y/n>
-       dbuniquename=<dbname> format=<12/12.2>
-       delete=<y/n> input_file=<input-fname>
-       sys=<y/password/external(<sys-external-name>)>
-       sysbackup=<y/password/external(<sysbackup-external-name>)>
-       sysdg=<y/password/external(<sysdg-external-name>)>
-       syskm=<y/password/external(<syskm-external-name>)>
-```
 
 
 
