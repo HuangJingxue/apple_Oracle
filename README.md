@@ -37,6 +37,7 @@
 * [数据库性能调优指南12 *c*版本2（12.2）](https://docs.oracle.com/en/database/oracle/oracle-database/12.2/tgdba/index.html)
 * [SQL *PLUS®用户指南和参考 发行版2（12.2）](https://docs.oracle.com/en/database/oracle/oracle-database/12.2/sqpug/index.html)
 * [云企业管理器（12.2）](https://oracle-base.com/articles/12c/cloud-control-12cr5-silent-installation-on-oracle-linux-7#cloud-control-installation)
+* [使用SQL * Plus查看有关CDB和PDB的信息](https://docs.oracle.com/en/database/oracle/oracle-database/12.2/admin/viewing-information-about-cdbs-and-pdbs-with-sql-plus.html#GUID-208C0C35-D105-443B-B788-381F090B1D11)
 
 
 
