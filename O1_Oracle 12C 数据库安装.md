@@ -203,6 +203,38 @@ cd /u01/soft/database
 [root@foundation0 oracle]# for i in `ps -ef | grep java |awk '{print $2}'`;do kill -9 $i;done
 ```
 
+swap分区默认分配7G需要拓展
+```shell
+free -h
+dd if=/dev/zero of=/home/swap bs=1024 count=7340032
+mkswap /home/swap
+swapon /home/swap
+
+[root@foundation0 oracle]# free -h
+              total        used        free      shared  buff/cache   available
+Mem:            15G        1.8G        6.0G         13M        7.8G         13G
+Swap:          7.9G          0B        7.9G
+[root@foundation0 oracle]# free -h
+              total        used        free      shared  buff/cache   available
+Mem:            15G        1.8G        6.0G         13M        7.8G         13G
+Swap:          7.9G          0B        7.9G
+[root@foundation0 oracle]# dd if=/dev/zero of=/home/swap bs=1024 count=7340032
+7340032+0 records in
+7340032+0 records out
+7516192768 bytes (7.5 GB) copied, 28.3909 s, 265 MB/s
+[root@foundation0 oracle]# mkswap /home/swap
+Setting up swapspace version 1, size = 7340028 KiB
+no label, UUID=d280e8ee-a22c-4669-9853-c10f81e0e580
+[root@foundation0 oracle]# swapon /home/swap
+swapon: /home/swap: insecure permissions 0644, 0600 suggested.
+[root@foundation0 oracle]# free -h
+              total        used        free      shared  buff/cache   available
+Mem:            15G        1.8G        855M         13M         12G         13G
+Swap:           14G          0B         14G
+
+```
+
+
 远程连接：
 
 ```shell
