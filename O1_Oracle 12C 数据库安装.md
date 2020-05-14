@@ -141,12 +141,66 @@ mkdir -p /u01/app/oracle
 chown -R oracle:oinstall /u01/app
 ```
 
-图形化：
+已配置vncserver的情况下：
 
 ```shell
 ./runInstaller #安装实例
 netca #启动监听
 dbca #安装数据库
+```
+没有配置vncserver的情况下:
+```shell
+yum install -y tigervnc-server tigervnc
+cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@:1.service
+vim /etc/systemd/system/vncserver@:1.service
+[Unit]
+Description=Remote desktop service (VNC)
+After=syslog.target network.target
+
+[Service]
+Type=forking
+# Clean any existing files in /tmp/.X11-unix environment
+ExecStartPre=/bin/sh -c '/usr/bin/vncserver -kill %i > /dev/null 2>&1 || :'
+ExecStart=/usr/sbin/runuser -l oracle -c "/usr/bin/vncserver %i"
+PIDFile=/home/oracle/.vnc/%H%i.pid
+ExecStop=/bin/sh -c '/usr/bin/vncserver -kill %i > /dev/null 2>&1 || :'
+
+[Install]
+WantedBy=multi-user.target
+
+
+systemctl daemon-reload
+systemctl enable vncserver@:1.service
+
+vncserver
+ps -ef|grep vnc
+export DISPLAY=:1
+xdpyinfo | grep name
+printenv | grep DIS  #查看当前DISPLAY信息
+xhost + 
+
+su - oracle
+export DISPLAY=:1
+cd /u01/soft/database
+./runInstaller
+
+[root@foundation0 oracle]# ps -ef | grep java |awk '{print $2}'
+16848
+17465
+17854
+20124
+20703
+20969
+21184
+21527
+21748
+22097
+22695
+23300
+23644
+25715
+26709
+[root@foundation0 oracle]# for i in `ps -ef | grep java |awk '{print $2}'`;do kill -9 $i;done
 ```
 
 远程连接：
