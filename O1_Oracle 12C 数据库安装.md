@@ -136,9 +136,10 @@ export LD_LIBRARY_PATH=$ORACLE_HOME/lib:/lib:/usr/lib
 export CLASSPATH=$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib
 ```
 创建安装数据库软件的目录：
+```shell
 mkdir -p /u01/app/oracle
 chown -R oracle:oinstall /u01/app
-
+```
 
 图形化：
 
