@@ -18,6 +18,11 @@ kernel.shmmall 总内存/4
 kernel.shmmax  全备内容或者80%
 ```
 
+配置在线源
+```shell
+[root@foundation0 isos]# rpm -ivh http://epel.mirrors.arminco.com/7/x86_64/Packages/e/epel-release-7-12.noarch.rpm
+```
+
 安装步骤:
 
 ```shell
