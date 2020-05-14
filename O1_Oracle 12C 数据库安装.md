@@ -234,6 +234,45 @@ Swap:           14G          0B         14G
 
 ```
 
+执行配置脚本：
+```shell
+[root@foundation0 oracle]# /u01/app/oraInventory/orainstRoot.sh
+Changing permissions of /u01/app/oraInventory.
+Adding read,write permissions for group.
+Removing read,write,execute permissions for world.
+
+Changing groupname of /u01/app/oraInventory to oinstall.
+The execution of the script is complete.
+
+[root@foundation0 oracle]# /u01/app/oracle/product/12.2.0.1/db_1/root.sh 
+Performing root user operation.
+
+The following environment variables are set as:
+    ORACLE_OWNER= oracle
+    ORACLE_HOME=  /u01/app/oracle/product/12.2.0.1/db_1
+
+Enter the full pathname of the local bin directory: [/usr/local/bin]: 
+   Copying dbhome to /usr/local/bin ...
+   Copying oraenv to /usr/local/bin ...
+   Copying coraenv to /usr/local/bin ...
+
+
+Creating /etc/oratab file...
+Entries will be added to the /etc/oratab file as needed by
+Database Configuration Assistant when a database is created
+Finished running generic part of root script.
+Now product-specific root actions will be performed.
+Do you want to setup Oracle Trace File Analyzer (TFA) now ? yes|[no] : 
+ys^H
+Oracle Trace File Analyzer (TFA - User Mode) is available at :
+    /u01/app/oracle/product/12.2.0.1/db_1/suptools/tfa/release/tfa_home/bin/tfactl
+
+OR
+
+Oracle Trace File Analyzer (TFA - Daemon Mode) can be installed by running this script :
+    /u01/app/oracle/product/12.2.0.1/db_1/suptools/tfa/release/tfa_home/install/roottfa.sh
+
+```
 
 远程连接：
 
