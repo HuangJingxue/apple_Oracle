@@ -33,6 +33,7 @@
 * [数据库网络服务管理员指南12 c版本2（12.2）](https://docs.oracle.com/en/database/oracle/oracle-database/12.2/netag/index.html)
 * [数据库升级指南12 *c*版本2（12.2）](https://docs.oracle.com/en/database/oracle/oracle-database/12.2/upgrd/index.html)
 * [数据库备份和恢复用户指南12 c版本2（12.2）](https://docs.oracle.com/en/database/oracle/oracle-database/12.2/bradv/index.html)
+* [数据库工具指南12](https://docs.oracle.com/database/121/SUTIL/GUID-5F7380CE-A619-4042-8D13-1F7DDE429991.htm#SUTIL200)
 * [数据库安全指南12 c版本2（12.2）](https://docs.oracle.com/en/database/oracle/oracle-database/12.2/dbseg/index.html)
 * [数据库性能调优指南12 *c*版本2（12.2）](https://docs.oracle.com/en/database/oracle/oracle-database/12.2/tgdba/index.html)
 * [SQL *PLUS®用户指南和参考 发行版2（12.2）](https://docs.oracle.com/en/database/oracle/oracle-database/12.2/sqpug/index.html)
