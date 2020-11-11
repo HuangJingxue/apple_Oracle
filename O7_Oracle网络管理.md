@@ -41,6 +41,40 @@ PDB1 =
       (SERVICE_NAME = orclpdb)
     )
   )
+  
+  lsnrctl status
+
+[oracle@Oracle01 ~]$ lsnrctl status
+
+LSNRCTL for Linux: Version 12.2.0.1.0 - Production on 22-SEP-2019 13:49:06
+
+Copyright (c) 1991, 2016, Oracle.  All rights reserved.
+
+Connecting to (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=Oracle01)(PORT=1521)))
+STATUS of the LISTENER
+------------------------
+Alias                     LISTENER
+Version                   TNSLSNR for Linux: Version 12.2.0.1.0 - Production
+Start Date                22-SEP-2019 13:23:08
+Uptime                    0 days 0 hr. 26 min. 1 sec
+Trace Level               off
+Security                  ON: Local OS Authentication
+SNMP                      OFF
+Listener Parameter File   /u01/app/oracle/product/12.2.0.1/db_1/network/admin/listener.ora
+Listener Log File         /u01/app/oracle/diag/tnslsnr/Oracle01/listener/alert/log.xml
+Listening Endpoints Summary...
+  (DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(HOST=Oracle01)(PORT=1521)))
+  (DESCRIPTION=(ADDRESS=(PROTOCOL=ipc)(KEY=EXTPROC1521)))
+Services Summary...
+Service "931ed7877f0586f5e055288c95e95258" has 1 instance(s).
+  Instance "cdb1", status READY, has 1 handler(s) for this service...
+Service "cdb1" has 1 instance(s).
+  Instance "cdb1", status READY, has 1 handler(s) for this service...
+Service "cdb1XDB" has 1 instance(s).
+  Instance "cdb1", status READY, has 1 handler(s) for this service...
+Service "orclpdb" has 1 instance(s).
+  Instance "cdb1", status READY, has 1 handler(s) for this service...
+The command completed successfully
 
 
 ```
